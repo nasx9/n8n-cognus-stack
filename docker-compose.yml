@@ -1,10 +1,7 @@
-version: "3.8"
-
 services:
   n8n:
     image: docker.n8n.io/n8nio/n8n
     container_name: n8n
-    restart: always
     environment:
       - DB_TYPE=postgresdb
       - DB_POSTGRESDB_HOST=postgres
@@ -12,12 +9,10 @@ services:
       - DB_POSTGRESDB_DATABASE=cognus
       - DB_POSTGRESDB_USER=postgres
       - DB_POSTGRESDB_PASSWORD=${POSTGRES_PASSWORD}
-      - N8N_ENCRYPTION_KEY=${N8N_KEY}
+      - N8N_ENCRYPTION_KEY=${N8N_ENCRYPTION_KEY}
       - GENERIC_TIMEZONE=America/Sao_Paulo
       - TZ=America/Sao_Paulo
-      - WEBHOOK_URL=${PUBLIC_URL}
-      - N8N_EDITOR_BASE_URL=${PUBLIC_URL}
-      - N8N_HOST=${PUBLIC_HOST}
+      - WEBHOOK_TUNNEL_URL=${WEBHOOK_TUNNEL_URL}
     ports:
       - "5678:5678"
     volumes:
