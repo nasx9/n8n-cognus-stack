@@ -1,0 +1,4 @@
+# Volumes e dados locais
+n8n_data/
+pg_data/
+.env
