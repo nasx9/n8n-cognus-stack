@@ -20,6 +20,8 @@ services:
     depends_on:
       - postgres
       - redis
+    networks:
+      - coolify
 
   postgres:
     image: postgres:17-alpine
@@ -31,13 +33,16 @@ services:
       - POSTGRES_DB=cognus
     volumes:
       - ./pg_data:/var/lib/postgresql/data
-
+    networks:
+      - coolify
 
   redis:
     image: redis:7-alpine
     container_name: redis
     restart: always
+    networks:
+      - coolify
 
 networks:
-  internal:
-    driver: bridge
+  coolify:
+    external: true
