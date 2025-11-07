@@ -20,8 +20,6 @@ services:
     depends_on:
       - postgres
       - redis
-    networks:
-      - internal
 
   postgres:
     image: postgres:17-alpine
@@ -33,15 +31,12 @@ services:
       - POSTGRES_DB=cognus
     volumes:
       - ./pg_data:/var/lib/postgresql/data
-    networks:
-      - internal
+
 
   redis:
     image: redis:7-alpine
     container_name: redis
     restart: always
-    networks:
-      - internal
 
 networks:
   internal:
